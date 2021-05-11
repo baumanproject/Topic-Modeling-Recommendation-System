@@ -1,0 +1,6 @@
+{
+  "SCOPES": ["https://www.googleapis.com/auth/drive"],
+  "SERVICE_ACCOUNT_FILE" : "path_to_gdrive_api_json",
+  "api_folder_path": "1w3ljF7RmQ5hZRqQMvNnx3Ur6AfMqVh7y",
+  "data_folder" :"./data"
+}
