@@ -7,13 +7,16 @@ from postgres_api.run import insert_into_DOCUMENT, insert_into_DOC_PROCESSING, \
 
 from data_transform.run import lemmatizer, preprocessor, get_text
 
-from tm_model.run import add_to_temp_vw_file, inference_for_file, clear_log_directory, vw_files_concat, train
+from tm_model.run import add_to_temp_vw_file, inference_for_file, clear_log_directory, vw_files_concat, train, model
 
 from execute import logger
 
 
 def inference():
     logger.info("--INFERENCE ITERATION--")
+    if model == None:
+        logger.critical("During training critical error occured | Model in inference mode does not exist")
+        raise BrokenPipeError
     last_update_time = get_last_update("Topic_modeling_inference")
     info_drive_array = GDriveDownloadInfo(red_time=last_update_time)
 
@@ -47,6 +50,9 @@ def inference():
 
 def synchronize(test=False):
     logger.info("-- Synchronization phase --")
+    if model == None:
+        logger.critical("During training critical error occured | Model in inference mode does not exist")
+        raise BrokenPipeError
     # will make checks for dataset.vw and tm_curr table
     lines = tuple(open("./opt/vw/prod/dataset.vw", 'r'))
     clear_TM_CURRENT()
