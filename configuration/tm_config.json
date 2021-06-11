@@ -1,12 +1,11 @@
 {
-  "similarity_number": 10,
+  "similarity_number": 2,
   "train":{
     "threads": 4,
     "num_topics": 100},
 
   "inference": {
-    "similarity_number": 10,
-    "min_similarity_score": 0.6,
+    "min_similarity_score": 0.95,
     "clear_log_dir": 1
   }
 }

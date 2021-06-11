@@ -1,6 +1,6 @@
 {
   "SCOPES": ["https://www.googleapis.com/auth/drive"],
-  "SERVICE_ACCOUNT_FILE" : "path_to_gdrive_api_json",
+  "SERVICE_ACCOUNT_FILE" : "../disser_models_and_sck/pdfcatch-982436b6092f.json",
   "api_folder_path": "1w3ljF7RmQ5hZRqQMvNnx3Ur6AfMqVh7y",
   "data_folder" :"./data"
 }

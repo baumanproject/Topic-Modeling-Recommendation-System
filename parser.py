@@ -15,7 +15,9 @@ if __name__ == "__main__":
          #                   help='current working directory',required=True)
 
         args = parser.parse_args()
+
         arg_choice = args.module
+
         if(arg_choice == "sync"):
             synchronize()
         elif(arg_choice == "inf"):

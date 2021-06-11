@@ -13,7 +13,8 @@ def lemmatizer(text):
 
 def preprocessor(text):
     try:
-        text_preproc = ' '.join([word for word in tokenizer.tokenize(text) if word not in stopwords_en])
+        text_preproc = ' '.join(
+            [word for word in tokenizer.tokenize(text) if word not in stopwords_en and len(word) >= 3])
     except:
         logger.warn("Unexpected error during stage preprocessor")
         return " "
@@ -31,9 +32,9 @@ def cut_reference(text):
 
 def get_text(pdf_name):
     try:
-        doc = fitz.open(data_folder+"/"+ pdf_name)
+        doc = fitz.open(data_folder + "/" + pdf_name)
         text = '\n'.join([doc[i].getText() for i, _ in enumerate(doc)])
-        #print(text)
+        # print(text)
     except:
         logger.warn("Error with file : " + pdf_name)
         return ""

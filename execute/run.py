@@ -53,7 +53,7 @@ def synchronize(test=False):
     if model == None:
         logger.critical("During training critical error occured | Model in inference mode does not exist")
         raise BrokenPipeError
-    # will make checks for dataset.vw and tm_curr table
+    # will make checks for dataset1.vw and tm_curr table
     lines = tuple(open("./opt/vw/prod/dataset.vw", 'r'))
     clear_TM_CURRENT()
     for line in lines:

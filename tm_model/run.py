@@ -75,7 +75,7 @@ def inference_for_file(file_name, init=0):
 def train():
     try:
         logger.info("TRAINIG BEGIN")
-        batch_vectorizer_mono = artm.BatchVectorizer(data_path="./opt/vw/prod/dataset.vw",
+        batch_vectorizer_mono = artm.BatchVectorizer(data_path="./opt/vw/prod/dataset1.vw",
                                                      data_format='vowpal_wabbit',
                                                      target_folder="./opt/vw/prod/dataset_batch")
         logger.info("Batches stage completed")
@@ -90,14 +90,12 @@ def train():
         dictionary = artm.Dictionary()
         dictionary.gather(data_path=batch_vectorizer_mono.data_path)
         dictionary.filter(min_df_rate=0.01, min_tf=10, inplace=True)
-
         model_artm.initialize(dictionary=dictionary)
         logger.info("Dictionary stage completed")
         model_artm.scores.add(artm.SparsityPhiScore(name='sparsity_phi_score', class_id='@modal'))
         model_artm.scores.add(artm.SparsityThetaScore(name='sparsity_theta_score'))
         model_artm.scores.add(artm.TopTokensScore(name='top_tokens_score', class_id="@modal"))
         model_artm.scores.add(artm.PerplexityScore(name='perplexity_score', class_ids={'@modal': 1}))
-
         model_artm.regularizers.add(
             artm.DecorrelatorPhiRegularizer(name='decorrelator_phi_lab', tau=1.0e+5, class_ids=['@modal']))
 
@@ -131,7 +129,7 @@ def train():
 
 def vw_files_concat():
     # Concat vw files
-    with open("./opt/vw/prod/dataset.vw", 'a+') as outfile:
+    with open("./opt/vw/prod/dataset1.vw", 'a+') as outfile:
         with open("./opt/vw/temp/temp.vw", 'r') as fd:
             for line in fd:
                 outfile.write(line)
